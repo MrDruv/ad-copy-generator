@@ -4,51 +4,42 @@
     <meta charset="UTF-8">
     <style>
         @page { size: A4; margin: 2.5cm; }
-        body { font-family: 'Helvetica', 'Arial', sans-serif; font-size: 11pt; line-height: 1.5; color: #2c3e50; margin: 0; padding: 0; }
+        body { font-family: 'Arial', sans-serif; font-size: 11pt; line-height: 1.5; color: #333; }
         .header { text-align: right; border-bottom: 2px solid #1a5fb4; padding-bottom: 10px; margin-bottom: 30px; }
-        .company-name { font-size: 18pt; font-weight: bold; color: #1a5fb4; letter-spacing: 1px; }
-        .confidential-tag { color: #e74c3c; font-size: 9pt; font-weight: bold; text-transform: uppercase; }
-        h1 { font-size: 20pt; color: #1a5fb4; margin-top: 0; }
+        .company-name { font-size: 18pt; font-weight: bold; color: #1a5fb4; }
         .section-title { font-size: 12pt; font-weight: bold; color: #1a5fb4; text-transform: uppercase; border-bottom: 1px solid #eee; margin-top: 20px; padding-bottom: 5px; }
         table { width: 100%; border-collapse: collapse; margin: 15px 0; }
         th, td { text-align: left; padding: 8px; border-bottom: 1px solid #f2f2f2; }
         th { width: 35%; color: #7f8c8d; font-weight: normal; }
         td { font-weight: bold; }
-        .signature-box { margin-top: 50px; width: 100%; }
-        .signature-line { border-top: 1px solid #000; width: 200px; margin-top: 40px; }
     </style>
 </head>
 <body>
-
     <div class="header">
-        <div class="company-name">PHRONETIC AI</div>
-        <div class="confidential-tag">Private & Confidential</div>
+        <div class="company-name">{{ company_name }}</div>
+        <div style="color: #e74c3c; font-size: 9pt; font-weight: bold;">PRIVATE & CONFIDENTIAL</div>
     </div>
 
     <p>Date: {{ current_date }}</p>
-    <p><strong>To: {{ name }}</strong><br>
-    Location: {{ location }}</p>
+    <p><strong>To: {{ name }}</strong><br>Location: {{ location }}</p>
 
     <h1>Employment Offer</h1>
-
     <p>Dear {{ name }},</p>
-    <p>We are delighted to invite you to join <strong>Phronetic AI</strong> as a <strong>{{ employment_type }}</strong> employee. After reviewing your background, we are confident that your skills will be a tremendous asset to our team.</p>
+    <p>We are delighted to invite you to join <strong>{{ company_name }}</strong>. This offer is for a {{ employment_type }} role.</p>
 
     <div class="section-title">1. Role & Reporting</div>
     <table>
         <tr><th>Job Title</th><td>{{ title }}</td></tr>
         <tr><th>Department</th><td>{{ department }}</td></tr>
-        <tr><th>Level</th><td>{{ level }}</td></tr>
         <tr><th>Reporting To</th><td>{{ reporting_manager }}</td></tr>
     </table>
 
-    <div class="section-title">2. Compensation & Benefits (All values in INR)</div>
-    <p>Your total rewards package includes the following components:</p>
+    <div class="section-title">2. Compensation (INR)</div>
     <table>
         <tr><th>Total CTC</th><td>₹{{ total_ctc }}</td></tr>
-        <tr><th>Base Salary</th><td>₹{{ salary }} per annum</td></tr>
-        <tr><th>Annual Bonus Target</th><td>{{ bonus }}</td></tr>
-        <tr><th>Equity Grant</th><td>{{ equity }}</td></tr>
+        <tr><th>Base Salary</th><td>₹{{ salary }}</td></tr>
+        <tr><th>Bonus</th><td>{{ bonus }}</td></tr>
+        <tr><th>Equity</th><td>{{ equity }}</td></tr>
     </table>
 
     <p><strong>Additional Benefits:</strong></p>
@@ -58,20 +49,9 @@
         {% endfor %}
     </ul>
 
-    <div class="section-title">3. Terms of Employment</div>
-    <p>Your proposed joining date is <strong>{{ joining_date }}</strong>. This offer is subject to the terms outlined in our standard employment agreement.</p>
-
-    <p>Welcome to the future of AI. We look forward to building with you.</p>
-
-    <div class="signature-box">
+    <div style="margin-top: 50px;">
         <p>Sincerely,</p>
-        <p><strong>{{ reporting_manager }}</strong><br>Phronetic AI</p>
-        
-        <div style="margin-top: 60px;">
-            <div class="signature-line"></div>
-            <p style="font-size: 9pt;">Candidate Signature: {{ name }}</p>
-        </div>
+        <p><strong>{{ reporting_manager }}</strong><br>{{ company_name }}</p>
     </div>
-
 </body>
 </html>
