@@ -1,0 +1,4 @@
+flask
+weasyprint
+gunicorn
+jinja2
