@@ -101,11 +101,21 @@
 
     <div class="section-title">2. Compensation & Benefits</div>
     <p>Your total rewards package for this position includes the following components:</p>
+  
     <table>
-        <tr><th>Base Salary</th><td>{{ salary }} per annum</td></tr>
-        <tr><th>Annual Bonus Target</th><td>{{ bonus }}</td></tr>
+        <tr><th>Total CTC</th><td>{{ total_ctc }}</td></tr>
+        <tr><th>Base Salary</th><td>{{ base_salary }}</td></tr>
+        <tr><th>Annual Bonus</th><td>{{ bonus }}</td></tr>
         <tr><th>Equity Grant</th><td>{{ equity }}</td></tr>
     </table>
+
+    <div class="section-title">3. Salary Breakdown</div>
+    <table>
+        <tr><th>Gross Pay</th><td>{{ gross_pay }}</td></tr>
+        <tr><th>Total Deductions</th><td>{{ total_deductions }}</td></tr>
+        <tr><th>Estimated Take-Home Pay</th><td>{{ take_home }}</td></tr>
+    </table>
+
 
     <div class="section-title">3. Terms of Employment</div>
     <p>This offer is contingent upon the successful completion of standard reference checks. You will be eligible for our standard benefits package, including health insurance, paid time off, and professional development stipends as per company policy.</p>
