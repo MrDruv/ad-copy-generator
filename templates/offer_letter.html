@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @page {
+            size: A4;
+            margin: 2.5cm;
+        }
+        body {
+            font-family: 'Helvetica', 'Arial', sans-serif;
+            font-size: 11pt;
+            line-height: 1.5;
+            color: #2c3e50;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            text-align: right;
+            border-bottom: 2px solid #1a5fb4;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        .company-name {
+            font-size: 18pt;
+            font-weight: bold;
+            color: #1a5fb4;
+            letter-spacing: 1px;
+        }
+        .confidential-tag {
+            color: #e74c3c;
+            font-size: 9pt;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        h1 {
+            font-size: 20pt;
+            color: #1a5fb4;
+            margin-top: 0;
+        }
+        .section-title {
+            font-size: 12pt;
+            font-weight: bold;
+            color: #1a5fb4;
+            text-transform: uppercase;
+            border-bottom: 1px solid #eee;
+            margin-top: 20px;
+            padding-bottom: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            text-align: left;
+            padding: 8px;
+            border-bottom: 1px solid #f2f2f2;
+        }
+        th {
+            width: 30%;
+            color: #7f8c8d;
+            font-weight: normal;
+        }
+        td {
+            font-weight: bold;
+        }
+        .signature-box {
+            margin-top: 50px;
+            width: 100%;
+        }
+        .signature-line {
+            border-top: 1px solid #000;
+            width: 200px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="company-name">PHRONETIC AI</div>
+        <div class="confidential-tag">Private & Confidential</div>
+    </div>
+
+    <p>Date: {{ current_date }}</p>
+    <p><strong>To: {{ name }}</strong><br>
+    Location: {{ location }}</p>
+
+    <h1>Employment Offer</h1>
+
+    <p>Dear {{ name }},</p>
+    <p>We are delighted to invite you to join <strong>Phronetic AI</strong>. After reviewing your background and our recent discussions, we are confident that your skills and experience will be a tremendous asset to our team.</p>
+
+    <div class="section-title">1. Role & Department</div>
+    <table>
+        <tr><th>Job Title</th><td>{{ title }}</td></tr>
+        <tr><th>Department</th><td>{{ department }}</td></tr>
+        <tr><th>Level</th><td>{{ level }}</td></tr>
+    </table>
+
+    <div class="section-title">2. Compensation & Benefits</div>
+    <p>Your total rewards package for this position includes the following components:</p>
+    <table>
+        <tr><th>Base Salary</th><td>{{ salary }} per annum</td></tr>
+        <tr><th>Annual Bonus Target</th><td>{{ bonus }}</td></tr>
+        <tr><th>Equity Grant</th><td>{{ equity }}</td></tr>
+    </table>
+
+    <div class="section-title">3. Terms of Employment</div>
+    <p>This offer is contingent upon the successful completion of standard reference checks. You will be eligible for our standard benefits package, including health insurance, paid time off, and professional development stipends as per company policy.</p>
+
+    <p>Please review these terms and indicate your acceptance by signing below no later than five business days from the date of this letter.</p>
+
+    <p>Welcome to the future of AI. We look forward to building with you.</p>
+
+    <div class="signature-box">
+        <p>Sincerely,</p>
+        <p><strong>Hiring Manager Name</strong><br>Phronetic AI</p>
+        
+        <div style="margin-top: 60px;">
+            <div class="signature-line"></div>
+            <p style="font-size: 9pt;">Candidate Signature: {{ name }}</p>
+        </div>
+    </div>
+
+</body>
+</html>
