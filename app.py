@@ -6,7 +6,7 @@ import os
 
 app = Flask(__name__)
 
-# Ensure a directory exists to save generated PDFs for downloading
+
 OUTPUT_DIR = "static/offers"
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
@@ -18,8 +18,19 @@ def home():
         "endpoint": "/generate-pdf (POST)"
     }
 
-@app.route('/generate-pdf', methods=['POST'])
+@app.route('/generate-pdf', methods=['GET', 'POST']) 
 def generate_pdf():
+   
+    if request.method == 'GET':
+        return {
+            "error": "Method Not Allowed for Browser",
+            "message": "This endpoint requires a POST request with JSON data to generate a PDF.",
+            "usage_example": {
+                "name": "John Doe",
+                "title": "Software Engineer",
+                "salary": "10 LPA"
+            }
+        }, 405
     try:
         data = request.json
         if not data:
