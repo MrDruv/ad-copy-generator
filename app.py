@@ -52,7 +52,7 @@ def generate_offer_letter():
         HTML(string=rendered_html).write_pdf(target=filepath)
 
         # 4. Construct the downloadable URL
-        base_url = request.host_url.rstrip('/')
+        base_url = request.host_url.replace("http://", "https://").rstrip('/')
         download_url = f"{base_url}/download/{filename}"
 
         return jsonify({
