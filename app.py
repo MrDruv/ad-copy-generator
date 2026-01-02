@@ -3,78 +3,82 @@ from weasyprint import HTML
 import os
 import uuid
 import traceback
+import time
 from datetime import datetime
 
 app = Flask(__name__)
 
-# Use /tmp for Docker/Cloud compatibility (guaranteed writable)
+# Writable directory for temporary PDF storage
 OUTPUT_DIR = "/tmp"
 
-@app.route('/', methods=['GET'])
-def home():
-    return jsonify({
-        "status": "live",
-        "message": "Dockerized Phronetic AI API is running!",
-        "version": "3.0"
-    })
+def cleanup_old_files(directory, max_age_seconds=3600):
+    """Deletes files older than the specified time (default 1 hour)."""
+    try:
+        now = time.time()
+        for f in os.listdir(directory):
+            path = os.path.join(directory, f)
+            # Only target files with our 'offer-' prefix to be safe
+            if f.startswith("offer-") and os.stat(path).st_mtime < now - max_age_seconds:
+                if os.path.isfile(path):
+                    os.remove(path)
+    except Exception as e:
+        print(f"Cleanup Error: {e}")
 
 @app.route('/generate', methods=['POST'])
 def generate_offer_letter():
+    # 1. Trigger the cleanup timer logic
+    cleanup_old_files(OUTPUT_DIR) 
+
     try:
         raw_data = request.get_json()
         if not raw_data:
             return jsonify({"error": "No JSON payload provided"}), 400
 
-        # 1. Extract Data Blocks (matching your Orchestrator schema)
+        # Data Extraction
         company = raw_data.get('company_info', {})
         candidate = raw_data.get('candidate_info', {})
         role = raw_data.get('role_info', {})
         comp = raw_data.get('compensation_info', {})
 
-        # 2. Render the external HTML Template
-        # Ensure 'offer_letter.html' is in a folder named 'templates'
+        # 2. Render HTML with all data fields
         rendered_html = render_template(
             'offer_letter.html',
-            company_name=company.get('name', 'Phronetic AI'),
             name=candidate.get('name', '[Candidate Name]'),
-            title=role.get('title', '[Role]'),
             location=role.get('location', 'Remote'),
-            salary=comp.get('total_ctc', 'TBD'),
+            title=role.get('title', '[Role]'),
+            department=role.get('department', 'Engineering'),
             level=role.get('level', 'L1'),
+            salary=comp.get('total_ctc', 'TBD'),
+            base_salary=comp.get('base_salary', 'TBD'),
+            bonus=comp.get('bonus', 'N/A'),
+            reporting_manager=role.get('reporting_manager', 'TBD'),
+            employment_type=role.get('employment_type', 'Full-Time'),
+            joining_date=raw_data.get('joining_date', 'TBD'),
             current_date=datetime.now().strftime("%B %d, %Y")
         )
 
-        # 3. Generate PDF and save to /tmp
+        # 3. Save PDF to /tmp
         filename = f"offer-{uuid.uuid4().hex[:8]}.pdf"
         filepath = os.path.join(OUTPUT_DIR, filename)
-        
-        # WeasyPrint handles the HTML -> PDF conversion
         HTML(string=rendered_html).write_pdf(target=filepath)
 
-        # 4. Construct the downloadable URL
+        # 4. Construct Secure HTTPS Link
         base_url = request.host_url.replace("http://", "https://").rstrip('/')
         download_url = f"{base_url}/download/{filename}"
 
         return jsonify({
             "status": "success",
             "download_url": download_url,
-            "filename": filename,
-            "preview": f"Offer generated for {candidate.get('name')}"
+            "message": "File will be available for 60 minutes."
         })
 
     except Exception as e:
-        return jsonify({
-            "status": "error",
-            "error": str(e),
-            "trace": traceback.format_exc()
-        }), 500
+        return jsonify({"error": str(e), "trace": traceback.format_exc()}), 500
 
-# Serve file from /tmp via a public /download/ route
 @app.route('/download/<filename>')
 def serve_pdf(filename):
     return send_from_directory(OUTPUT_DIR, filename, as_attachment=True)
 
 if __name__ == '__main__':
-    # Docker uses the PORT environment variable
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
