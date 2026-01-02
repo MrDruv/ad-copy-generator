@@ -5,7 +5,13 @@ from datetime import datetime
 import os
 
 app = Flask(__name__)
-
+@app.route('/')
+def home():
+    return {
+        "status": "online",
+        "message": "Phronetic AI Offer Letter API is running.",
+        "endpoint": "/generate-pdf (POST)"
+    }
 @app.route('/generate-pdf', methods=['POST'])
 def generate_pdf():
     try:
