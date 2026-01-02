@@ -1,4 +1,2 @@
-flask
-weasyprint
-gunicorn
-jinja2
+Flask==2.3.2
+WeasyPrint==58.2
