@@ -1,24 +1,22 @@
 FROM python:3.11-slim
 
 # Install system dependencies for WeasyPrint
+# Note: we use --no-install-recommends to keep the image small
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    python3-pip \
-    python3-cffi \
-    python3-brotli \
+    shared-mime-info \
+    libcairo2 \
     libpango-1.0-0 \
-    libharfbuzz0b \
-    libpangoft2-1.0-0 \
     libpangocairo-1.0-0 \
-    libxml2-dev \
-    libxslt1-dev \
-    zlib1g-dev \
-    libffi-dev \
     libgdk-pixbuf2.0-0 \
+    libffi-dev \
+    shared-mime-info \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 COPY . .
+
+# Install python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Start with Gunicorn on the port Render provides
