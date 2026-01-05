@@ -84,41 +84,53 @@
     </div>
 
     <p>Date: {{ current_date }}</p>
-    <p><strong>To: {{ name }}</strong><br>
-    Location: {{ location }}</p>
+    <p>
+        <strong>To: {{ candidate_name }}</strong><br>
+        Email: {{ candidate_email }}<br>
+        Address: {{ candidate_address }}<br>
+        Location: {{ location }}
+    </p>
 
     <h1>Employment Offer</h1>
 
-    <p>Dear {{ name }},</p>
-    <p>We are delighted to invite you to join <strong>{{ company_name }}</strong>. After reviewing your background and our recent discussions, we are confident that your skills and experience will be a tremendous asset to our team.</p>
+    <p>Dear {{ candidate_name }},</p>
+    <p>
+        We are delighted to invite you to join <strong>{{ company_name }}</strong>.
+        After reviewing your background and our recent discussions, we are confident that your skills and experience will be a tremendous asset to our team.
+    </p>
 
-    <div class="section-title">1. Role & Department</div>
+    <div class="section-title">1. Role & Level</div>
     <table>
-        <tr><th>Job Title</th><td>{{ title }}</td></tr>
-        <tr><th>Department</th><td>{{ department }}</td></tr>
+        <tr><th>Job Title</th><td>{{ job_title }}</td></tr>
         <tr><th>Level</th><td>{{ level }}</td></tr>
+        <tr><th>Employment Type</th><td>{{ employment_type }}</td></tr>
+        <tr><th>Location</th><td>{{ location }}</td></tr>
+        <tr><th>Joining Date</th><td>{{ joining_date }}</td></tr>
     </table>
 
     <div class="section-title">2. Compensation & Benefits</div>
     <p>Your total rewards package for this position includes the following components:</p>
-  
+
     <table>
         <tr><th>Total CTC</th><td>{{ total_ctc }}</td></tr>
         <tr><th>Base Salary</th><td>{{ base_salary }}</td></tr>
         <tr><th>Annual Bonus</th><td>{{ bonus }}</td></tr>
         <tr><th>Equity Grant</th><td>{{ equity }}</td></tr>
+        <tr><th>Benefits</th><td>{{ benefits }}</td></tr>
     </table>
 
     <div class="section-title">3. Salary Breakdown</div>
     <table>
         <tr><th>Gross Pay</th><td>{{ gross_pay }}</td></tr>
-        <tr><th>Total Deductions</th><td>{{ total_deductions }}</td></tr>
-        <tr><th>Estimated Take-Home Pay</th><td>{{ take_home }}</td></tr>
+        <tr><th>Total Deductions</th><td>{{ total_deduction }}</td></tr>
+        <tr><th>Estimated Take-Home Pay</th><td>{{ take_home_pay }}</td></tr>
     </table>
 
-
-    <div class="section-title">3. Terms of Employment</div>
-    <p>This offer is contingent upon the successful completion of standard reference checks. You will be eligible for our standard benefits package, including health insurance, paid time off, and professional development stipends as per company policy.</p>
+    <div class="section-title">4. Terms of Employment</div>
+    <p>
+        This offer is contingent upon the successful completion of standard reference checks.
+        You will be eligible for our standard benefits package, including health insurance, paid time off, and professional development stipends as per company policy.
+    </p>
 
     <p>Please review these terms and indicate your acceptance by signing below no later than five business days from the date of this letter.</p>
 
@@ -126,11 +138,11 @@
 
     <div class="signature-box">
         <p>Sincerely,</p>
-        <p><strong>Hiring Manager Name</strong><br>Phronetic AI</p>
-        
+        <p><strong>Hiring Manager Name</strong><br>{{ company_name }}</p>
+
         <div style="margin-top: 60px;">
             <div class="signature-line"></div>
-            <p style="font-size: 9pt;">Candidate Signature: {{ name }}</p>
+            <p style="font-size: 9pt;">Candidate Signature: {{ candidate_name }}</p>
         </div>
     </div>
 
