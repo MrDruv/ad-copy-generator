@@ -91,7 +91,23 @@
 
     <p>Dear {{ name }},</p>
     <p>We are delighted to invite you to join <strong>{{ company_name }}</strong>. After reviewing your background and our recent discussions, we are confident that your skills and experience will be a tremendous asset to our team.</p>
-
+    <p>
+    Congratulations! It is our pleasure to offer you the full-time position of {{ title }} - {{ level }} (for 1 year) from the date of joining, during which the Company will be subject to
+    probation for 3 months. In case the performance is not found to be up to the expected job levels by the reporting manager, in case
+    work aspects defined, the job offer is subject to immediate termination without attracting any
+    notice period.
+    
+    This letter includes details of Compensation and Annexure as listed below:
+    
+    Annexure 1: Terms and Conditions
+    Annexure 2: Compensation Details
+    
+    To accept this offer, please sign and return one copy of this letter and annexure to your
+    official email address mentioned. We request you to keep this offer letter confidential. Retain the other copy for your
+    records.
+    
+    In case you do not return the accepted and signed copy of this letter within 1 working
+    days, the offer may stand withdrawn. The Company reserves the right to withdraw the offer.</p>
     <div class="section-title">1. Role & Department</div>
     <table>
         <tr><th>Job Title</th><td>{{ title }}</td></tr>
@@ -133,6 +149,157 @@
             <p style="font-size: 9pt;">Candidate Signature:</p>
             <p style="font-size: 9pt;">Name in full: {{ name }} </p>
         </div>
+    </div>
+
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @page { size: A4; margin: 1.5cm; }
+        body { 
+            font-family: 'Helvetica', Arial, sans-serif; 
+            font-size: 11pt; 
+            line-height: 1.6; 
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header { 
+            text-align: center; 
+            margin-bottom: 30px; 
+            border-bottom: 2px solid #1a5fb4;
+            padding-bottom: 15px;
+        }
+        .company-name { 
+            font-size: 16pt; 
+            font-weight: bold; 
+            color: #1a5fb4;
+            margin-bottom: 5px;
+        }
+        .company-address { 
+            font-size: 10pt; 
+            color: #666;
+        }
+        .date { 
+            text-align: right; 
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .candidate-address { 
+            margin-bottom: 30px; 
+            font-size: 10pt;
+        }
+        h1 { 
+            color: #1a5fb4; 
+            font-size: 14pt; 
+            margin: 20px 0 10px 0;
+        }
+        .section-title { 
+            font-weight: bold; 
+            color: #1a5fb4;
+            margin: 25px 0 15px 0;
+            font-size: 12pt;
+        }
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin: 15px 0;
+        }
+        th, td { 
+            padding: 8px 12px; 
+            text-align: left; 
+            border-bottom: 1px solid #ddd;
+        }
+        th { 
+            width: 40%; 
+            background-color: #f8f9fa;
+            font-weight: bold;
+        }
+        .signature-section {
+            margin-top: 50px;
+        }
+        .signature-line {
+            border-top: 1px solid #000;
+            width: 250px;
+            margin: 30px 0;
+        }
+        .acceptance {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #1a5fb4;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="company-name">{{ company_name }}</div>
+        <div class="company-address">{{ company_address }}</div>
+    </div>
+
+    <div class="date">{{ current_date }}</div>
+
+    <div class="candidate-address">
+        {{ name }}<br>
+        {{ location }}
+    </div>
+
+    <h1>Offer Letter</h1>
+
+    <p>Dear {{ name }},</p>
+
+    <p>Congratulations! It is our pleasure to offer you the full-time position of <strong>{{ title }} - {{ level }}</strong> (for 1 year) from the date of joining, during which the Company will be subject to probation for 3 months. In case the performance is not found to be up to the expected job levels by the reporting manager, in case work aspects defined, the job offer is subject to immediate termination without attracting any notice period.</p>
+
+    <p>This letter includes details of Compensation and Annexure as listed below:</p>
+
+    <div class="section-title">Annexure 1: Terms and Conditions</div>
+    <div class="section-title">Annexure 2: Compensation Details</div>
+
+    <p>To accept this offer, please sign and return one copy of this letter and annexure to your official email address mentioned. We request you to keep this offer letter confidential. Retain the other copy for your records.</p>
+
+    <p>In case you do not return the accepted and signed copy of this letter within 1 working days, the offer may stand withdrawn. The Company reserves the right to withdraw the offer.</p>
+
+    <div class="section-title">Compensation Details</div>
+    
+    <table>
+        <tr><th>Total CTC</th><td>{{ salary }}</td></tr>
+        <tr><th>Annual Bonus</th><td>{{ bonus }}</td></tr>
+        <tr><th>Equity Grant</th><td>{{ equity }}</td></tr>
+    </table>
+    <div class="section-title"> Salary Breakdown</div>
+    <table>
+        <tr><th>Gross Pay</th><td>{{ gross_pay }}</td></tr>
+        <tr><th>Total Deductions</th><td>{{ total_deductions }}</td></tr>
+        <tr><th>Estimated Take-Home Pay</th><td>{{ take_home }}</td></tr>
+    </table>
+    <div class="section-title">Other Details</div>
+    
+    <table>
+        <tr><th>Joining Date</th><td>{{ joining_date }}</td></tr>
+        <tr><th>Department</th><td>{{ department }}</td></tr>
+        <tr><th>Location</th><td>{{ location }}</td></tr>
+        <tr><th>Employment Type</th><td>{{ employment_type }}</td></tr>
+    </table>
+
+    <div class="signature-section">
+        <p>Sincerely,</p>
+        <p><strong>Hiring Manager</strong><br>{{ company_name }}</p>
+        
+        <div class="signature-line"></div>
+    </div>
+
+    <div class="acceptance">
+        <p><strong>Acceptance</strong></p>
+        <p>I accept the offer as per the terms and conditions mentioned above.</p>
+        
+        <div class="signature-line"></div>
+        <p>{{ name }}<br>Date: __________</p>
     </div>
 
 </body>
