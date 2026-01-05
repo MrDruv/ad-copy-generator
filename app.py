@@ -44,7 +44,7 @@ def generate_offer_letter():
             'offer_letter.html',
             company_name=company.get('name', '[company_name]'), # Placeholder if name missing
             name=candidate.get('name', '[Candidate Name]'),
-            candidate_location.get('candidate_location', '[candidate_location]')
+            candidate_location.get('candidate_location', '[candidate_location]'),
             location=role.get('location', 'Remote'),
             title=role.get('title', '[Role]'),
             department=role.get('department', 'General'),
