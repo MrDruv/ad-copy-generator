@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<!--
 <head>
     <meta charset="UTF-8">
     <style>
@@ -91,23 +92,7 @@
 
     <p>Dear {{ name }},</p>
     <p>We are delighted to invite you to join <strong>{{ company_name }}</strong>. After reviewing your background and our recent discussions, we are confident that your skills and experience will be a tremendous asset to our team.</p>
-    <p>
-    Congratulations! It is our pleasure to offer you the full-time position of {{ title }} - {{ level }} (for 1 year) from the date of joining, during which the Company will be subject to
-    probation for 3 months. In case the performance is not found to be up to the expected job levels by the reporting manager, in case
-    work aspects defined, the job offer is subject to immediate termination without attracting any
-    notice period.
-    
-    This letter includes details of Compensation and Annexure as listed below:
-    
-    Annexure 1: Terms and Conditions
-    Annexure 2: Compensation Details
-    
-    To accept this offer, please sign and return one copy of this letter and annexure to your
-    official email address mentioned. We request you to keep this offer letter confidential. Retain the other copy for your
-    records.
-    
-    In case you do not return the accepted and signed copy of this letter within 1 working
-    days, the offer may stand withdrawn. The Company reserves the right to withdraw the offer.</p>
+
     <div class="section-title">1. Role & Department</div>
     <table>
         <tr><th>Job Title</th><td>{{ title }}</td></tr>
@@ -120,7 +105,7 @@
   
     <table>
         <tr><th>Total CTC</th><td>{{ total_ctc }}</td></tr>
-        <tr><th>Base Salary</th><td>{{ base_salary }}</td></tr>
+        <tr><th>Base Salary</th><td>{{ salary }}</td></tr>
         <tr><th>Annual Bonus</th><td>{{ bonus }}</td></tr>
         <tr><th>Equity Grant</th><td>{{ equity }}</td></tr>
     </table>
@@ -153,10 +138,8 @@
 
 </body>
 </html>
+-->
 
-
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <style>
@@ -252,10 +235,25 @@
 
     <h1>Offer Letter</h1>
 
-    <p>Dear {{ name }},</p>
+    <p>{{ name }},</p>
 
-    <p>Congratulations! It is our pleasure to offer you the full-time position of <strong>{{ title }} - {{ level }}</strong> (for 1 year) from the date of joining, during which the Company will be subject to probation for 3 months. In case the performance is not found to be up to the expected job levels by the reporting manager, in case work aspects defined, the job offer is subject to immediate termination without attracting any notice period.</p>
-
+    <p>
+    Congratulations! It is our pleasure to offer you the full-time position of {{ title }} - {{ level }} (for 1 year) from the date of joining, during which the Company will be subject to
+    probation for 3 months. In case the performance is not found to be up to the expected job levels by the reporting manager, in case
+    work aspects defined, the job offer is subject to immediate termination without attracting any
+    notice period.
+    
+    This letter includes details of Compensation and Annexure as listed below:
+    
+    Annexure 1: Terms and Conditions
+    Annexure 2: Compensation Details
+    
+    To accept this offer, please sign and return one copy of this letter and annexure to your
+    official email address mentioned. We request you to keep this offer letter confidential. Retain the other copy for your
+    records.
+    
+    In case you do not return the accepted and signed copy of this letter within 1 working
+    days, the offer may stand withdrawn. The Company reserves the right to withdraw the offer.</p>
     <p>This letter includes details of Compensation and Annexure as listed below:</p>
 
     <div class="section-title">Annexure 1: Terms and Conditions</div>
@@ -268,7 +266,7 @@
     <div class="section-title">Compensation Details</div>
     
     <table>
-        <tr><th>Total CTC</th><td>{{ salary }}</td></tr>
+        <tr><th>Total CTC</th><td>{{ total_ctc }}</td></tr>
         <tr><th>Annual Bonus</th><td>{{ bonus }}</td></tr>
         <tr><th>Equity Grant</th><td>{{ equity }}</td></tr>
     </table>
