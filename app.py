@@ -55,6 +55,10 @@ def generate_offer_letter():
             bonus=comp.get('bonus', '0%'),
             equity=comp.get('equity', 'None'),
             benefits=raw_data.get('benefits', []),
+            gross_pay=raw_data.get('gross_pay', 'N/A'),
+            total_deductions=raw_data.get('total_deductions', 'N/A'),
+            take_home_pay=raw_data.get('take_home_pay', 'N/A'),
+            take_home=raw_data.get('take_home_pay', 'N/A'),
             joining_date=raw_data.get('joining_date', 'TBD'),
             current_date=datetime.now().strftime("%B %d, %Y")
         )
