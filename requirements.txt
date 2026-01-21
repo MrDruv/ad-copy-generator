@@ -1,4 +1,4 @@
-Flask
-weasyprint
-requests
+flask
 gunicorn
+google-genai
+pillow
